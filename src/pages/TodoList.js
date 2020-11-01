@@ -1,4 +1,5 @@
-import { Grid } from "@material-ui/core";
+import { Grid, IconButton } from "@material-ui/core";
+import { NoteAdd } from "@material-ui/icons";
 import { useState } from "react";
 
 const Todo = ({ todo }) => todo;
@@ -8,16 +9,25 @@ const GridPadding = () => <Grid item xs={0} sm={2}></Grid>;
 const TodoList = () => {
   const [todos, setTodos] = useState([1]);
 
-  if (todos.length === 0) {
-    return <EmptyTodoList />;
-  }
+  const addTodoClicked = () => {};
+
   return (
     <Grid container>
       <GridPadding />
       <Grid item xs={12} sm={8}>
-        {todos.map((todo) => (
-          <Todo todo={todo} />
-        ))}
+        <Grid container direction="row">
+          <Grid item>
+            {todos.length === 0 && <EmptyTodoList />}
+            {todos.map((todo) => (
+              <Todo todo={todo} />
+            ))}
+          </Grid>
+          <Grid>
+            <IconButton onClick={addTodoClicked}>
+              <NoteAdd />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Grid>
 
       <GridPadding />
