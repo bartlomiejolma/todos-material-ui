@@ -18,7 +18,7 @@ const Content = () => {
   return <Button color="primary">Hello World</Button>;
 };
 
-const SideMenu = () => {
+const SideMenu = ({ title, links }) => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
@@ -30,7 +30,7 @@ const SideMenu = () => {
           <IconButton edge="start" onClick={handleDrawerOpen}>
             <Menu />
           </IconButton>
-          <Typography variant="h5">Todos</Typography>
+          <Typography variant="h5">{title}</Typography>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
@@ -39,26 +39,30 @@ const SideMenu = () => {
         </IconButton>
         <Divider />
         <List>
-          <ListItem>
-            <Link component={RouterLink} to="/" variant="h6">
-              Todos
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link component={RouterLink} to="/kanban" variant="h6">
-              Kanban
-            </Link>
-          </ListItem>
+          {links.map((link) => (
+            <ListItem>{link}</ListItem>
+          ))}
+          <ListItem></ListItem>
+          <ListItem></ListItem>
         </List>
       </Drawer>
     </>
   );
 };
 
+const links = [
+  <Link component={RouterLink} to="/" variant="h6">
+    Todos
+  </Link>,
+  <Link component={RouterLink} to="/kanban" variant="h6">
+    Kanban
+  </Link>,
+];
+
 function App() {
   return (
     <Router>
-      <SideMenu />
+      <SideMenu title="Todos" links={links} />
       <Content />
     </Router>
   );
