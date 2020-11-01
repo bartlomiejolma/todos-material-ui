@@ -7,7 +7,9 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Link,
 } from "@material-ui/core";
+import { Link as RouterLink, BrowserRouter as Router } from "react-router-dom";
 import { Menu, ChevronLeft } from "@material-ui/icons";
 
 const Content = () => {
@@ -31,6 +33,14 @@ function App() {
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeft />
           <Divider />
+          <Router>
+            <Link component={RouterLink} to="/">
+              Todos
+            </Link>
+            <Link component={RouterLink} to="/kanban">
+              Kanban
+            </Link>
+          </Router>
         </IconButton>
       </Drawer>
       <Content />
