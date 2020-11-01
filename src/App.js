@@ -1,14 +1,11 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import { BrowserRouter as Router } from "react-router-dom";
-import links from "./navigation/links";
-import SideMenu from "./navigation/SideMenu";
+import { links, SideMenu } from "./navigation";
 
 const Content = () => {
   return <Button color="primary">Hello World</Button>;
 };
-
-
 
 function App() {
   return (
