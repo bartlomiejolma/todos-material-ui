@@ -18,12 +18,13 @@ const Content = () => {
   return <Button color="primary">Hello World</Button>;
 };
 
-function App() {
+const SideMenu = () => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
+
   return (
-    <Router>
+    <>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" onClick={handleDrawerOpen}>
@@ -50,6 +51,14 @@ function App() {
           </ListItem>
         </List>
       </Drawer>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <SideMenu />
       <Content />
     </Router>
   );
