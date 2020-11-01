@@ -17,12 +17,13 @@ import { Menu, ChevronLeft } from "@material-ui/icons";
 const Content = () => {
   return <Button color="primary">Hello World</Button>;
 };
+
 function App() {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
   return (
-    <>
+    <Router>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" onClick={handleDrawerOpen}>
@@ -36,23 +37,21 @@ function App() {
           <ChevronLeft />
         </IconButton>
         <Divider />
-        <Router>
-          <List>
-            <ListItem>
-              <Link component={RouterLink} to="/" variant="h6">
-                Todos
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link component={RouterLink} to="/kanban" variant="h6">
-                Kanban
-              </Link>
-            </ListItem>
-          </List>
-        </Router>
+        <List>
+          <ListItem>
+            <Link component={RouterLink} to="/" variant="h6">
+              Todos
+            </Link>
+          </ListItem>
+          <ListItem>
+            <Link component={RouterLink} to="/kanban" variant="h6">
+              Kanban
+            </Link>
+          </ListItem>
+        </List>
       </Drawer>
       <Content />
-    </>
+    </Router>
   );
 }
 
