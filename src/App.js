@@ -8,6 +8,8 @@ import {
   Toolbar,
   Typography,
   Link,
+  List,
+  ListItem,
 } from "@material-ui/core";
 import { Link as RouterLink, BrowserRouter as Router } from "react-router-dom";
 import { Menu, ChevronLeft } from "@material-ui/icons";
@@ -32,16 +34,22 @@ function App() {
       <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeft />
-          <Divider />
-          <Router>
-            <Link component={RouterLink} to="/">
-              Todos
-            </Link>
-            <Link component={RouterLink} to="/kanban">
-              Kanban
-            </Link>
-          </Router>
         </IconButton>
+        <Divider />
+        <Router>
+          <List>
+            <ListItem>
+              <Link component={RouterLink} to="/" variant="h6">
+                Todos
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link component={RouterLink} to="/kanban" variant="h6">
+                Kanban
+              </Link>
+            </ListItem>
+          </List>
+        </Router>
       </Drawer>
       <Content />
     </>
