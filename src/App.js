@@ -29,7 +29,7 @@ function App() {
           <Typography variant="h5">Todos</Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="persistent" anchor="left" open={open}>
+      <Drawer anchor="left" open={open} onClose={handleDrawerClose}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeft />
           <Divider />
