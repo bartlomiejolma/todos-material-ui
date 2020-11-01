@@ -5,13 +5,13 @@ const links = [
   {
     path: "/",
     linkComponent: RouterLink,
-    component: TodoList,
+    Component: TodoList,
     text: "Todos",
   },
   {
     path: "/kanban",
     linkComponent: RouterLink,
-    component: Kanban,
+    Component: Kanban,
     text: "Kanban",
   },
 ];

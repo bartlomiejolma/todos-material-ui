@@ -8,8 +8,10 @@ function App() {
     <Router>
       <SideMenu title="Todos" links={links} />
       <Switch>
-        {links.map((link) => (
-          <Route exact path={link.path}>{link.component}</Route>
+        {links.map(({ path, Component }) => (
+          <Route exact path={path}>
+            <Component />
+          </Route>
         ))}
       </Switch>
     </Router>
