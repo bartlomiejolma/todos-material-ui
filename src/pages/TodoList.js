@@ -5,6 +5,7 @@ import {
   CardMedia,
   Grid,
   IconButton,
+  Modal,
   Typography,
 } from "@material-ui/core";
 import { NoteAdd } from "@material-ui/icons";
@@ -24,14 +25,20 @@ const Todo = ({ todo }) => {
 const EmptyTodoList = () => "Empty";
 const GridPadding = () => <Grid item xs={0} sm={2}></Grid>;
 
+const AddTodo = () => {
+  return "Add todo";
+};
 const sampleTodo = {
   title: "foo",
   description: "lorem lipsum",
 };
 const TodoList = () => {
   const [todos, setTodos] = useState([sampleTodo]);
+  const [addModalOpen, setAddModalOpen] = useState(false);
 
-  const addTodoClicked = () => {};
+  const handleAddClose = () => setAddModalOpen(false);
+
+  const addTodoClicked = () => setAddModalOpen(true);
 
   return (
     <Grid container>
@@ -48,6 +55,9 @@ const TodoList = () => {
             <IconButton onClick={addTodoClicked}>
               <NoteAdd />
             </IconButton>
+            <Modal open={addModalOpen} onClose={handleAddClose}>
+              <AddTodo />
+            </Modal>
           </Grid>
         </Grid>
       </Grid>
