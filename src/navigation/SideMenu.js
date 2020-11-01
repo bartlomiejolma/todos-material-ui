@@ -8,6 +8,7 @@ import {
   Typography,
   List,
   ListItem,
+  Link,
 } from "@material-ui/core";
 import { Menu, ChevronLeft } from "@material-ui/icons";
 
@@ -33,7 +34,16 @@ const SideMenu = ({ title, links }) => {
         <Divider />
         <List>
           {links.map((link) => (
-            <ListItem>{link}</ListItem>
+            <ListItem>
+              <Link
+                component={link.linkComponent}
+                to={link.path}
+                variant="h6"
+                onClick={handleDrawerClose}
+              >
+                {link.text}
+              </Link>
+            </ListItem>
           ))}
         </List>
       </Drawer>

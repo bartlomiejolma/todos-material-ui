@@ -1,14 +1,19 @@
-import React from "react";
-import { Link } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import { Kanban, TodoList } from "../pages";
 
 const links = [
-  <Link component={RouterLink} to="/" variant="h6">
-    Todos
-  </Link>,
-  <Link component={RouterLink} to="/kanban" variant="h6">
-    Kanban
-  </Link>,
+  {
+    path: "/",
+    linkComponent: RouterLink,
+    component: TodoList,
+    text: "Todos",
+  },
+  {
+    path: "/kanban",
+    linkComponent: RouterLink,
+    component: Kanban,
+    text: "Kanban",
+  },
 ];
 
 export default links;
