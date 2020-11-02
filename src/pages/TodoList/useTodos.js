@@ -33,7 +33,11 @@ const useTodos = ({ modifiedCallback = () => {} }) => {
     modifiedCallback();
   };
 
-  return [todos, modifyTodo];
+  const deleteTodo = (todo) => {
+    setTodos(todos.filter((nextTodo) => nextTodo.id !== todo.id));
+  };
+
+  return [todos, modifyTodo, deleteTodo];
 };
 
 export default useTodos;
