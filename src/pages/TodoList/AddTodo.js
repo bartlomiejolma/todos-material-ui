@@ -8,6 +8,9 @@ const StyledModal = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.palette.background.default};
   border: 2px solid ${({ theme }) => theme.palette.common.black};
+  left: 50%;
+  top: 30%;
+  margin-left: -200px;
 `;
 
 const AddTodo = ({ addTodo }) => {
