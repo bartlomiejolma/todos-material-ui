@@ -13,8 +13,8 @@ const StyledModal = styled.div`
   margin-left: -200px;
 `;
 
-const AddTodo = ({ addTodo }) => {
-  const { register, handleSubmit } = useForm();
+const AddTodo = ({ todo, addTodo }) => {
+  const { register, handleSubmit } = useForm({defaultValues: todo});
   const onSubmit = (data) => addTodo(data);
 
   return (
