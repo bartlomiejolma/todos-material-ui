@@ -5,14 +5,13 @@ const sampleTodo = {
   description: "lorem lipsum",
 };
 
-const useTodos = ({ modifiedCallback = () => {} }) => {
+const useTodos = () => {
   const [todos, setTodos] = useState([sampleTodo]);
 
   const addTodo = (todo) => {
     todo.id = Math.floor(Math.random() * 1000);
     todos.push(todo);
     setTodos(todos);
-    modifiedCallback();
   };
 
   const changeTodo = (todo) => {
@@ -25,12 +24,11 @@ const useTodos = ({ modifiedCallback = () => {} }) => {
     setTodos(updatedTodos);
   };
   const modifyTodo = (todo) => {
-    if (todo.id) {
+    if (todo.id !== undefined) {
       changeTodo(todo);
     } else {
       addTodo(todo);
     }
-    modifiedCallback();
   };
 
   const deleteTodo = (todo) => {
