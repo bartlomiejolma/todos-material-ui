@@ -1,80 +1,13 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Grid,
-  IconButton,
-  Modal,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Grid, IconButton, Modal } from "@material-ui/core";
 import { NoteAdd } from "@material-ui/icons";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
-const Todo = ({ todo }) => {
-  return (
-    <Card>
-      <CardHeader title={todo.title} />
-      <CardMedia image={todo.image} />
-      <CardContent>
-        <Typography variant="h6">{todo.description}</Typography>
-      </CardContent>
-    </Card>
-  );
-};
+import AddTodo from "./AddTodo";
+import TodoView from "./TodoView";
+
 const EmptyTodoList = () => "Empty";
 const GridPadding = () => <Grid item xs={0} sm={2}></Grid>;
 
-const AddTodo = ({ addTodo }) => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => addTodo(data);
-
-  return (
-    <div
-      style={{
-        width: 400,
-        position: "absolute",
-        backgroundColor: "white",
-        border: "2px solid #000",
-      }}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container direction="column">
-          <TextField inputRef={register} name="title" label="Title" />
-          <TextField
-            inputRef={register}
-            name="description"
-            label="Description"
-          />
-          <TextField
-            inputRef={register}
-            name="date"
-            label="Due Date"
-            type="date"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            inputRef={register}
-            name="image"
-            label="Images"
-            type="file"
-            accept="image/png, image/jpeg"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-
-          <Button type="submit">Save</Button>
-        </Grid>
-      </form>
-    </div>
-  );
-};
 const sampleTodo = {
   title: "foo",
   description: "lorem lipsum",
@@ -100,7 +33,7 @@ const TodoList = () => {
           <Grid item>
             {todos.length === 0 && <EmptyTodoList />}
             {todos.map((todo) => (
-              <Todo todo={todo} />
+              <TodoView todo={todo} />
             ))}
           </Grid>
           <Grid>
