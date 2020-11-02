@@ -1,10 +1,13 @@
 import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardMedia,
-    Typography,
-  } from "@material-ui/core";
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
+import { Delete, Search } from "@material-ui/icons";
 
 const TodoView = ({ todo }) => {
   return (
@@ -14,6 +17,14 @@ const TodoView = ({ todo }) => {
       <CardContent>
         <Typography variant="h6">{todo.description}</Typography>
       </CardContent>
+      <CardActions>
+        <IconButton>
+          <Search />
+        </IconButton>
+        <IconButton>
+          <Delete />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };
