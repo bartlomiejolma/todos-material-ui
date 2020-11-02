@@ -14,13 +14,17 @@ import {
   Search,
 } from "@material-ui/icons";
 
-const TodoView = ({ todo }) => {
+const TodoView = ({ todo, modifyTodo, deleteTodo }) => {
+  const toggleCompleted = () => {
+    todo.completed = !todo.completed;
+    modifyTodo(todo);
+  };
   return (
     <Card>
       <CardHeader
         title={todo.title}
         action={
-          <IconButton>
+          <IconButton onClick={toggleCompleted}>
             {todo.completed ? <CheckBox /> : <CheckBoxOutlineBlank />}
           </IconButton>
         }

@@ -26,7 +26,7 @@ const TodoList = () => {
           <Grid item>
             {todos.length === 0 && <EmptyTodoList />}
             {todos.map((todo) => (
-              <TodoView todo={todo} />
+              <TodoView todo={todo} modifyTodo={modifyTodo}/>
             ))}
           </Grid>
           <Grid>
