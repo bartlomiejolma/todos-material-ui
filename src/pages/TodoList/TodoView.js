@@ -37,7 +37,7 @@ const TodoView = ({ todo, modifyTodo, deleteTodo }) => {
         <IconButton>
           <Search />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => deleteTodo(todo)}>
           <Delete />
         </IconButton>
       </CardActions>

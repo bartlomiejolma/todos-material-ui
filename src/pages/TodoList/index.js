@@ -2,7 +2,6 @@ import { Grid, IconButton, Modal } from "@material-ui/core";
 import { NoteAdd } from "@material-ui/icons";
 import { useState } from "react";
 
-
 import AddTodo from "./AddTodo";
 import TodoView from "./TodoView";
 import useTodos from "./useTodos";
@@ -17,7 +16,9 @@ const TodoList = () => {
 
   const addTodoClicked = () => setAddModalOpen(true);
 
-  const [todos, modifyTodo] = useTodos({ modifiedCallback: handleAddClose });
+  const [todos, modifyTodo, deleteTodo] = useTodos({
+    modifiedCallback: handleAddClose,
+  });
   return (
     <Grid container>
       <GridPadding />
@@ -26,7 +27,11 @@ const TodoList = () => {
           <Grid item>
             {todos.length === 0 && <EmptyTodoList />}
             {todos.map((todo) => (
-              <TodoView todo={todo} modifyTodo={modifyTodo}/>
+              <TodoView
+                todo={todo}
+                modifyTodo={modifyTodo}
+                deleteTodo={deleteTodo}
+              />
             ))}
           </Grid>
           <Grid>
