@@ -16,9 +16,7 @@ const TodoList = () => {
 
   const addTodoClicked = () => setAddModalOpen(true);
 
-  const [todos, modifyTodo, deleteTodo] = useTodos({
-    modifiedCallback: handleAddClose,
-  });
+  const [todos, modifyTodo, deleteTodo] = useTodos();
   return (
     <Grid container>
       <GridPadding />
@@ -39,7 +37,7 @@ const TodoList = () => {
               <NoteAdd />
             </IconButton>
             <Modal open={addModalOpen} onClose={handleAddClose}>
-              <AddTodo addTodo={modifyTodo} />
+              <AddTodo addTodo={modifyTodo} done={handleAddClose}/>
             </Modal>
           </Grid>
         </Grid>
