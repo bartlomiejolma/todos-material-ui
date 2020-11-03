@@ -22,14 +22,16 @@ const TodoList = () => {
       <GridPadding />
       <Grid item xs={12} sm={8}>
         <Grid container direction="column" spacing={2}>
-          <Grid item>
+          <Grid item container direction="column" spacing={2}>
             {todos.length === 0 && <EmptyTodoList />}
             {todos.map((todo) => (
-              <TodoView
-                todo={todo}
-                modifyTodo={modifyTodo}
-                deleteTodo={deleteTodo}
-              />
+              <Grid item>
+                <TodoView
+                  todo={todo}
+                  modifyTodo={modifyTodo}
+                  deleteTodo={deleteTodo}
+                />
+              </Grid>
             ))}
           </Grid>
           <Grid>
@@ -37,7 +39,7 @@ const TodoList = () => {
               <NoteAdd />
             </IconButton>
             <Modal open={addModalOpen} onClose={handleAddClose}>
-              <AddTodo addTodo={modifyTodo} done={handleAddClose}/>
+              <AddTodo addTodo={modifyTodo} done={handleAddClose} />
             </Modal>
           </Grid>
         </Grid>
