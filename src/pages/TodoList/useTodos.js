@@ -1,17 +1,26 @@
 import { useState } from "react";
 
-const sampleTodo = {
-  title: "foo",
-  description: "lorem lipsum",
-};
+const TODOS = "todos";
 
+const getTodosFromLocalStorage = () => {
+  try {
+    return JSON.parse(localStorage.getItem(TODOS)) || [];
+  } catch (e) {
+    return [];
+  }
+};
 const useTodos = () => {
-  const [todos, setTodos] = useState([sampleTodo]);
+  const [todos, setTodos] = useState(getTodosFromLocalStorage);
+
+  const saveTodos = (newTodos) => {
+    setTodos(newTodos);
+    localStorage.setItem(TODOS, JSON.stringify(newTodos));
+  };
 
   const addTodo = (todo) => {
     todo.id = Math.floor(Math.random() * 1000);
     todos.push(todo);
-    setTodos(todos);
+    saveTodos(todos);
   };
 
   const changeTodo = (todo) => {
@@ -21,7 +30,7 @@ const useTodos = () => {
       }
       return nextTodo;
     });
-    setTodos(updatedTodos);
+    saveTodos(updatedTodos);
   };
   const modifyTodo = (todo) => {
     if (todo.id !== undefined) {
@@ -32,7 +41,7 @@ const useTodos = () => {
   };
 
   const deleteTodo = (todo) => {
-    setTodos(todos.filter((nextTodo) => nextTodo.id !== todo.id));
+    saveTodos(todos.filter((nextTodo) => nextTodo.id !== todo.id));
   };
 
   return [todos, modifyTodo, deleteTodo];
