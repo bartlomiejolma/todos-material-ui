@@ -19,14 +19,16 @@ const Image = styled(CardMedia)`
   height: 50px;
 `;
 
-const AddTodo = ({ todo, addTodo, done }) => {
+const AddTodo = ({ todo = {}, addTodo, done }) => {
   const { register, handleSubmit } = useForm({ defaultValues: todo });
-  const onSubmit = (data) => {  
-    addTodo({ ...todo, ...data });
+  const onSubmit = (data) => {
+    const { image, ...rest } = data;
+    addTodo({ ...todo, ...rest, images: files });
     done();
   };
 
-  const [files, setFiles] = useState([]);
+  const { images = [] } = todo;
+  const [files, setFiles] = useState(images);
 
   return (
     <StyledModal>
