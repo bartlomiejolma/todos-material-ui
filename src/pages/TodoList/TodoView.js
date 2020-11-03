@@ -15,8 +15,13 @@ import {
   Search,
 } from "@material-ui/icons";
 import { useState } from "react";
+import styled from "styled-components";
 
 import AddTodo from "./AddTodo";
+
+const StyledCardMedia = styled(CardMedia)`
+  height: 100px;
+`
 
 const TodoView = ({ todo, modifyTodo, deleteTodo }) => {
   const toggleCompleted = () => {
@@ -40,7 +45,7 @@ const TodoView = ({ todo, modifyTodo, deleteTodo }) => {
           </IconButton>
         }
       />
-      <CardMedia image={todo.image} />
+      <StyledCardMedia image={todo.images[0]} />
       <CardContent>
         <Typography variant="h6">{todo.description}</Typography>
       </CardContent>
