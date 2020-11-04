@@ -2,7 +2,7 @@ describe("Create Todo", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.contains("Todos");
-    cy.contains("Empty");
+    cy.contains("Todo List is empty, add new Todos");
   });
 
   it("Adds Todos and deletes it", () => {
@@ -15,7 +15,7 @@ describe("Create Todo", () => {
 
     cy.contains("Save").click();
 
-    cy.contains("Empty").should("not.exist");
+    cy.contains("Todo List is empty, add new Todos").should("not.exist");
 
     cy.contains("Foo");
     cy.contains("Bar");
