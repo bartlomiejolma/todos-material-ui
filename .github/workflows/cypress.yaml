@@ -10,7 +10,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          env: PORT=5000
+          env: PORT=3000
           build: yarn build
           start: yarn start
-          wait-on: http://localhost:5000
+          wait-on: http://localhost:3000
