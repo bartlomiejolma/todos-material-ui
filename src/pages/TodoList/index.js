@@ -5,8 +5,8 @@ import { useState } from "react";
 import AddTodo from "./AddTodo";
 import TodoView from "./TodoView";
 import useTodos from "./useTodos";
+import EmptyTodoList from "./EmptyTodoList";
 
-const EmptyTodoList = () => "Empty";
 const GridPadding = () => <Grid item xs={0} sm={2}></Grid>;
 
 const TodoList = () => {
