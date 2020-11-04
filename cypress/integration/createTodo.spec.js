@@ -1,6 +1,7 @@
 describe("Create Todo", () => {
+
   it("Initially the list of todos is empty", () => {
-    cy.visit("http://localhost:5000");
+    cy.visit("/");
     cy.contains("Todos");
     cy.contains("Empty");
 
