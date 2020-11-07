@@ -25,8 +25,7 @@ const StyledCardMedia = styled(CardMedia)`
 
 const TodoView = ({ todo, modifyTodo, deleteTodo }) => {
   const toggleCompleted = () => {
-    todo.completed = !todo.completed;
-    modifyTodo(todo);
+    modifyTodo({...todo, completed: !todo.completed});
   };
 
   const [editModalOpen, setEditModalOpen] = useState(false);
