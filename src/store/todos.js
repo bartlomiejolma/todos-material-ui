@@ -5,8 +5,22 @@ const todoSlice = createSlice({
   initialState: [],
   reducers: {
     addTodo(state, action) {
-      const { id, text } = action.payload;
-      state.push({ id, text, completed: false });
+      const { todo } = action.payload;
+      todo.id = Math.floor(Math.random() * 1000);
+      state.push(todo);
+    },
+    changeTodo: (state, action) => {
+      const { todo } = action.payload;
+      return state.map((nextTodo) => {
+        if (nextTodo.id === todo.id) {
+          return todo;
+        }
+        return nextTodo;
+      });
+    },
+    deleteTodo: (state, action) => {
+      const { todo } = action.payload;
+      return state.filter((nextTodo) => nextTodo.id !== todo.id);
     },
     setTodosInStore(state, action) {
       const { todos } = action.payload;
@@ -15,6 +29,11 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, setTodosInStore } = todoSlice.actions;
+export const {
+  addTodo,
+  changeTodo,
+  deleteTodo,
+  setTodosInStore,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
