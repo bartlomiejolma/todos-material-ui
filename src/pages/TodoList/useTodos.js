@@ -1,18 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTodo, addTodo, deleteTodo } from "../../store/todos";
+import useLocalStorageTodos from "../../useLocalStorageTodos";
 
-const TODOS = "todos";
 
 const useTodos = () => {
+  useLocalStorageTodos();
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (todos.length > 0) {
-      localStorage.setItem(TODOS, JSON.stringify(todos));
-    }
-  }, [todos]);
 
   const modifyTodo = (todo) => {
     if (todo.id !== undefined) {

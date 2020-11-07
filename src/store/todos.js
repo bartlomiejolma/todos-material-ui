@@ -1,15 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const TODOS = "todos";
-
-const getTodosFromLocalStorage = () => {
-  try {
-    return JSON.parse(localStorage.getItem(TODOS)) || [];
-  } catch (e) {
-    return [];
-  }
-};
-
+import { getTodosFromLocalStorage} from "../useLocalStorageTodos";
 
 const todoSlice = createSlice({
   name: "todos",
