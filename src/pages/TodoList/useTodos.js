@@ -22,7 +22,9 @@ const useTodos = () => {
     }
   };
 
-  return [todos, modifyTodo, (todo) => dispatch(deleteTodo({ todo }))];
+  const removeTodo = (todo) => dispatch(deleteTodo({ todo }));
+
+  return [todos, modifyTodo, removeTodo];
 };
 
 export default useTodos;
