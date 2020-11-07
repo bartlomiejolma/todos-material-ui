@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTodosInStore } from "../../store/todos";
 
 const TODOS = "todos";
 
@@ -10,8 +12,16 @@ const getTodosFromLocalStorage = () => {
   }
 };
 const useTodos = () => {
-  const [todos, setTodos] = useState(getTodosFromLocalStorage);
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
+  
+  useEffect(() => {
+    const localStorageTodos = getTodosFromLocalStorage();
+    setTodos(localStorageTodos);
+  }, []);
+  
+  const setTodos = (newTodos) => dispatch(setTodosInStore({ todos: newTodos }));
   const saveTodos = (newTodos) => {
     setTodos(newTodos);
     localStorage.setItem(TODOS, JSON.stringify(newTodos));
