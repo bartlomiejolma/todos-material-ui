@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTodo, addTodo, deleteTodo } from "../../store/todos";
 import useLocalStorageTodos from "../../useLocalStorageTodos";
