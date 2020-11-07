@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const TODOS = "todos";
+
+const getTodosFromLocalStorage = () => {
+  try {
+    return JSON.parse(localStorage.getItem(TODOS)) || [];
+  } catch (e) {
+    return [];
+  }
+};
+
+
 const todoSlice = createSlice({
   name: "todos",
-  initialState: [],
+  initialState: getTodosFromLocalStorage(),
   reducers: {
     addTodo(state, action) {
       const { todo } = action.payload;
