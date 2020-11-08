@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
+import { changeGroupOfTodo } from "../../store/todos";
 
 const Container = styled.div`
   margin: 8px;
@@ -16,7 +17,7 @@ const TaskList = styled.div`
   padding: 8px;
 `;
 
-const Column = ({column, tasks}) => {
+const Column = ({ column, tasks }) => {
   return (
     <Container>
       <Title>{column.title}</Title>
@@ -63,9 +64,17 @@ const groupTodos = (todos) => {
 };
 const Kanban = () => {
   const todos = useSelector((state) => state.todos) || [];
+  const dispatch = useDispatch();
 
   const groupedTodos = groupTodos(todos);
   const onDragEnd = (result) => {
+    const { draggableId, destination } = result;
+    console.log(result);
+    if (!destination) {
+      return;
+    }
+    const { droppableId, index } = destination;
+    dispatch(changeGroupOfTodo({ id: draggableId, group: droppableId }));
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
