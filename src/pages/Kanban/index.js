@@ -53,12 +53,15 @@ const Task = ({ task, index }) => {
 };
 
 const groupTodos = (todos) => {
-  return todos.reduce((groups, todo) => {
-    const group = todo.group || "Backlog";
-    groups[group] = groups[group] || [];
-    groups[group].push(todo);
-    return groups;
-  }, {"Backlog":[], "In progress": []});
+  return todos.reduce(
+    (groups, todo) => {
+      const group = todo.group || "Backlog";
+      groups[group] = groups[group] || [];
+      groups[group].push(todo);
+      return groups;
+    },
+    { Backlog: [], "In progress": [] }
+  );
 };
 const Kanban = () => {
   const todos = useSelector((state) => state.todos) || [];
