@@ -36,7 +36,7 @@ const Column = ({column, tasks}) => {
 
 const Task = ({ task, index }) => {
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={task.id.toString()} index={index}>
       {(provided) => (
         <Container
           ref={provided.innerRef}
@@ -65,11 +65,12 @@ const Kanban = () => {
   const todos = useSelector((state) => state.todos) || [];
 
   const groupedTodos = groupTodos(todos);
-  const onDragEnd = () => {};
+  const onDragEnd = (result) => {
+  };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       {Object.entries(groupedTodos).map(([group, tasks]) => (
-        <Column column={{ title: group }} tasks={tasks} />
+        <Column column={{ title: group, id: group }} tasks={tasks} />
       ))}
     </DragDropContext>
   );
