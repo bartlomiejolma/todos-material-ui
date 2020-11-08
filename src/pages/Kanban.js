@@ -1,6 +1,59 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import styled from "styled-components";
+import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
+
+const Container = styled.div`
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+`;
+const Title = styled.h3`
+  padding: 8px;
+`;
+const TaskList = styled.div`
+  padding: 8px;
+`;
+
+class Column extends React.Component {
+  render() {
+    return (
+      <Container>
+        <Title>{this.props.column.title}</Title>
+        <Droppable droppableId={this.props.column.id}>
+          {(provided) => (
+            <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+              {this.props.tasks.map((task, index) => (
+                <Task key={task.id} task={task} index={index} />
+              ))}
+              {provided.placeholder}
+            </TaskList>
+          )}
+        </Droppable>
+      </Container>
+    );
+  }
+}
+
+class Task extends React.Component {
+  render() {
+    return (
+      <Draggable draggableId={this.props.task.id} index={this.props.index}>
+        {(provided) => (
+          <Container
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            {this.props.task.title}
+          </Container>
+        )}
+      </Draggable>
+    );
+  }
+}
+
 const groupTodos = (todos) => {
   return todos.reduce((groups, todo) => {
     const group = todo.group || "Backlog";
@@ -10,9 +63,17 @@ const groupTodos = (todos) => {
   }, {});
 };
 const Kanban = () => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos) || [];
 
-  return <div>{todos.map((todo) => todo.title)}</div>;
+  const groupedTodos = groupTodos(todos);
+  const onDragEnd = () => {};
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      {Object.entries(groupedTodos).map(([group, tasks]) => (
+        <Column column={{title:group}} tasks={tasks} />
+      ))}
+    </DragDropContext>
+  );
 };
 
 export default Kanban;
