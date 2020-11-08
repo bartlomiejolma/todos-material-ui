@@ -60,7 +60,7 @@ const groupTodos = (todos) => {
     groups[group] = groups[group] || [];
     groups[group].push(todo);
     return groups;
-  }, {});
+  }, {"Backlog":[], "In progress": []});
 };
 const Kanban = () => {
   const todos = useSelector((state) => state.todos) || [];
