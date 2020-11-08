@@ -36,23 +36,21 @@ class Column extends React.Component {
   }
 }
 
-class Task extends React.Component {
-  render() {
-    return (
-      <Draggable draggableId={this.props.task.id} index={this.props.index}>
-        {(provided) => (
-          <Container
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            {this.props.task.title}
-          </Container>
-        )}
-      </Draggable>
-    );
-  }
-}
+const Task = ({ task, index }) => {
+  return (
+    <Draggable draggableId={task.id} index={index}>
+      {(provided) => (
+        <Container
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {task.title}
+        </Container>
+      )}
+    </Draggable>
+  );
+};
 
 const groupTodos = (todos) => {
   return todos.reduce((groups, todo) => {
@@ -70,7 +68,7 @@ const Kanban = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       {Object.entries(groupedTodos).map(([group, tasks]) => (
-        <Column column={{title:group}} tasks={tasks} />
+        <Column column={{ title: group }} tasks={tasks} />
       ))}
     </DragDropContext>
   );
