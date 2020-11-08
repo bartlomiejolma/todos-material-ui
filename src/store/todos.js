@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTodosFromLocalStorage} from "../useLocalStorageTodos";
+import { getTodosFromLocalStorage } from "../useLocalStorageTodos";
 
 const todoSlice = createSlice({
   name: "todos",
@@ -23,6 +23,15 @@ const todoSlice = createSlice({
       const { todo } = action.payload;
       return state.filter((nextTodo) => nextTodo.id !== todo.id);
     },
+    changeGroupOfTodo: (state, action) => {
+      const { id, group } = action.payload;
+      return state.map((todo) => {
+        if (todo.id == id) {
+          return { ...todo, group };
+        }
+        return todo;
+      });
+    },
     setTodosInStore(state, action) {
       const { todos } = action.payload;
       return todos;
@@ -35,6 +44,7 @@ export const {
   changeTodo,
   deleteTodo,
   setTodosInStore,
+  changeGroupOfTodo,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
