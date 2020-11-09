@@ -3,23 +3,18 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Todo from "./Todo";
+import { Paper, Typography } from "@material-ui/core";
 
-const Container = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-`;
-const Title = styled.h3`
-  padding: 8px;
-`;
 const TaskList = styled.div`
   padding: 8px;
 `;
 
 const Column = ({ column, tasks }) => {
   return (
-    <Container>
-      <Title>{column.title}</Title>
+    <Paper elevation={3}>
+      <Typography variant="h5" component="h3">
+        {column.title}
+      </Typography>
       <Droppable droppableId={column.id}>
         {(provided) => (
           <TaskList ref={provided.innerRef} {...provided.droppableProps}>
@@ -30,7 +25,7 @@ const Column = ({ column, tasks }) => {
           </TaskList>
         )}
       </Droppable>
-    </Container>
+    </Paper>
   );
 };
 
