@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
-import { changeGroupOfTodo } from "../../store/todos";
+import { changeGroupOfTodo, changeIndexOfTodo } from "../../store/todos";
 
 const Container = styled.div`
   margin: 8px;
@@ -73,8 +73,9 @@ const Kanban = () => {
     if (!destination) {
       return;
     }
-    const { droppableId } = destination;
-    dispatch(changeGroupOfTodo({ id: draggableId, group: droppableId }));
+    const { droppableId, index } = destination;
+    dispatch(changeGroupOfTodo({ id: +draggableId, group: droppableId }));
+    dispatch(changeIndexOfTodo({ id: +draggableId, index }));
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
