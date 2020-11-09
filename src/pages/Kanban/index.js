@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import { changeGroupOfTodo, changeIndexOfTodo } from "../../store/todos";
 import Column from "./Column";
+import { Grid } from "@material-ui/core";
 
 const groupTodos = (todos) => {
   return todos.reduce(
@@ -13,7 +14,7 @@ const groupTodos = (todos) => {
       groups[group].push(todo);
       return groups;
     },
-    { Backlog: [], "In progress": [] }
+    { Backlog: [], "In progress": [], Done: [] }
   );
 };
 const Kanban = () => {
@@ -32,11 +33,13 @@ const Kanban = () => {
     dispatch(changeIndexOfTodo({ id: +draggableId, index }));
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      {Object.entries(groupedTodos).map(([group, tasks]) => (
-        <Column column={{ title: group, id: group }} tasks={tasks} />
-      ))}
-    </DragDropContext>
+    <Grid container spacing={4}>
+      <DragDropContext onDragEnd={onDragEnd}>
+        {Object.entries(groupedTodos).map(([group, tasks]) => (
+          <Column column={{ title: group, id: group }} tasks={tasks} />
+        ))}
+      </DragDropContext>
+    </Grid>
   );
 };
 
