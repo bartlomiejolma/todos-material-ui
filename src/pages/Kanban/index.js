@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Droppable, Draggable, DragDropContext } from "react-beautiful-dnd";
 import { changeGroupOfTodo, changeIndexOfTodo } from "../../store/todos";
+import Todo from "./Todo";
 
 const Container = styled.div`
   margin: 8px;
@@ -24,8 +25,8 @@ const Column = ({ column, tasks }) => {
       <Droppable droppableId={column.id}>
         {(provided) => (
           <TaskList ref={provided.innerRef} {...provided.droppableProps}>
-            {tasks.map((task, index) => (
-              <Task key={task.id} task={task} index={index} />
+            {tasks.map((todo, index) => (
+              <Todo key={todo.id} todo={todo} index={index} />
             ))}
             {provided.placeholder}
           </TaskList>
@@ -35,21 +36,7 @@ const Column = ({ column, tasks }) => {
   );
 };
 
-const Task = ({ task, index }) => {
-  return (
-    <Draggable draggableId={task.id.toString()} index={index}>
-      {(provided) => (
-        <Container
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          {task.title}
-        </Container>
-      )}
-    </Draggable>
-  );
-};
+
 
 const groupTodos = (todos) => {
   return todos.reduce(
