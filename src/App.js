@@ -10,13 +10,20 @@ import {
   ThemeProvider as MuiThemeProvider,
 } from "@material-ui/core/styles";
 
-const customTheme = createMuiTheme({});
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+const customTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+  },
+});
 
 function App() {
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={customTheme}>
         <ThemeProvider theme={customTheme}>
+          <CssBaseline />
           <Router>
             <SideMenu title="Todos" links={links} />
             <Switch>
