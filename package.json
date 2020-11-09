@@ -30,7 +30,8 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "lint-staged": {
@@ -56,6 +57,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^5.5.0"
+    "cypress": "^5.5.0",
+    "eslint-plugin-cypress": "^2.11.2"
   }
 }
