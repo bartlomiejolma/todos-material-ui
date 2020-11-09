@@ -25,9 +25,19 @@ const todoSlice = createSlice({
     },
     changeGroupOfTodo: (state, action) => {
       const { id, group } = action.payload;
+      console.log(action)
       return state.map((todo) => {
         if (todo.id === id) {
           return { ...todo, group };
+        }
+        return todo;
+      });
+    },
+    changeIndexOfTodo: (state, action) => {
+      const { id, index } = action.payload;
+      return state.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, index };
         }
         return todo;
       });
@@ -45,6 +55,7 @@ export const {
   deleteTodo,
   setTodosInStore,
   changeGroupOfTodo,
+  changeIndexOfTodo,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
