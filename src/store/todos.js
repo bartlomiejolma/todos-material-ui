@@ -26,7 +26,7 @@ const todoSlice = createSlice({
     changeGroupOfTodo: (state, action) => {
       const { id, group } = action.payload;
       return state.map((todo) => {
-        if (todo.id == id) {
+        if (todo.id === id) {
           return { ...todo, group };
         }
         return todo;

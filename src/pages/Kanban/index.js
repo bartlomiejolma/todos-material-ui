@@ -73,7 +73,7 @@ const Kanban = () => {
     if (!destination) {
       return;
     }
-    const { droppableId, index } = destination;
+    const { droppableId } = destination;
     dispatch(changeGroupOfTodo({ id: draggableId, group: droppableId }));
   };
   return (
