@@ -11,7 +11,17 @@ import {
   Link,
 } from "@material-ui/core";
 import { Menu, ChevronLeft } from "@material-ui/icons";
+import styled from "styled-components";
 
+const StyledList = styled(List)`
+  width: 300px;
+  color: ${({ theme }) => theme.palette.text.primary};
+`;
+
+const StyledLink = styled(Link)`
+  width: 300px;
+  color: ${({ theme }) => theme.palette.text.primary};
+`;
 const SideMenu = ({ title, links }) => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
@@ -32,20 +42,20 @@ const SideMenu = ({ title, links }) => {
           <ChevronLeft />
         </IconButton>
         <Divider />
-        <List>
+        <StyledList>
           {links.map((link) => (
             <ListItem>
-              <Link
+              <StyledLink
                 component={link.linkComponent}
                 to={link.path}
                 variant="h6"
                 onClick={handleDrawerClose}
               >
                 {link.text}
-              </Link>
+              </StyledLink>
             </ListItem>
           ))}
-        </List>
+        </StyledList>
       </Drawer>
     </>
   );
