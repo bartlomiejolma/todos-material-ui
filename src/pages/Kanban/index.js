@@ -23,11 +23,13 @@ const Kanban = () => {
   const dispatch = useDispatch();
 
   const onDragEnd = (result) => {
-    const { draggableId, destination } = result;
+    const { source, destination } = result;
     if (!destination) {
       return;
     }
-    const { droppableId, index } = destination;
+    const { droppableId: newGroup, index: newIndex } = destination;
+    const { droppableId: oldGroup, index: oldIndex } = source;
+    dispatch(moveTodo({ oldGroup, oldIndex, newGroup, newIndex }));
   };
   return (
     <GridContainer container spacing={4}>
