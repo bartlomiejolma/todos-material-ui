@@ -14,7 +14,7 @@ const todoSlice = createSlice({
     addTodo(state, action) {
       const { todo, category = "backlog" } = action.payload;
       todo.id = Math.floor(Math.random() * 1000);
-      const group = [...state[category]] || [];
+      const group = [...(state[category]|| [])] || [];
       group.push(todo);
       return { ...state, [category]: group };
     },
