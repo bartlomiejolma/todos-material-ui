@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeTodo, addTodo, deleteTodo } from "../../store/todos";
 import useLocalStorageTodos from "../../useLocalStorageTodos";
 
-const getTodos = (state) => state.todos;
-const todosSelector = createSelector([getTodos], (todos) => todos);
+const getTodos = (state) => state.todos || {};
+const todosSelector = createSelector([getTodos], (todos) =>
+  Object.values(todos).reduce((current, categoryTodos) => [
+    ...current,
+    ...categoryTodos,
+  ], [])
+);
 
 const useTodos = () => {
   useLocalStorageTodos();
