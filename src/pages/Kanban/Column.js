@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Todo from "./Todo";
 import { Grid, Paper, Typography } from "@material-ui/core";
+import { titleize } from "inflected";
 
 const StyledPaper = styled(Paper)`
   padding: 8px;
@@ -17,7 +18,7 @@ const Column = ({ column, tasks }) => {
         <Grid item xs={4} ref={provided.innerRef} {...provided.droppableProps}>
           <StyledPaper elevation={3}>
             <Typography variant="h5" component="h3">
-              {column.title}
+              {titleize(column.title)}
             </Typography>
             <Grid container spacing={1}>
               {tasks.map((todo, index) => (
