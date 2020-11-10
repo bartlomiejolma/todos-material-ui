@@ -32,7 +32,13 @@ const todoSlice = createSlice({
     },
     deleteTodo: (state, action) => {
       const { todo } = action.payload;
-      return state.filter((nextTodo) => nextTodo.id !== todo.id);
+      return Object.entries(state).reduce(
+        (acc, [group, groupTodos]) => ({
+          ...acc,
+          [group]: groupTodos.filter((nextTodo) => nextTodo.id !== todo.id),
+        }),
+        {}
+      );
     },
     changeGroupOfTodo: (state, action) => {
       const { id, group } = action.payload;
