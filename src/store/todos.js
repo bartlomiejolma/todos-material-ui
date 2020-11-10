@@ -3,12 +3,14 @@ import { getTodosFromLocalStorage } from "../useLocalStorageTodos";
 
 const todoSlice = createSlice({
   name: "todos",
-  initialState: getTodosFromLocalStorage(),
+  initialState: getTodosFromLocalStorage() || {},
   reducers: {
     addTodo(state, action) {
-      const { todo } = action.payload;
+      const { todo, category="backlog" } = action.payload;
       todo.id = Math.floor(Math.random() * 1000);
-      state.push(todo);
+      const group = state[category] || []
+      group.push(todo)
+      return {...state, [category]: group}
     },
     changeTodo: (state, action) => {
       const { todo } = action.payload;
