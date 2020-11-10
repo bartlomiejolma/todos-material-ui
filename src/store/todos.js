@@ -40,33 +40,18 @@ const todoSlice = createSlice({
         {}
       );
     },
-    changeGroupOfTodo: (state, action) => {
-      const { id, group } = action.payload;
-      return state.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, group };
-        }
-        return todo;
-      });
-    },
-    changeIndexOfTodo: (state, action) => {
-      const { id, index } = action.payload;
-      return state.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, index };
-        }
-        return todo;
-      });
+    moveTodo: (state, action) => {
+      const { oldGroup, oldIndex, newGroup, newIndex } = action.payload;
+      const [removed] = state[oldGroup].splice(oldIndex, 1)
+      if (state[newGroup]) {
+        state[newGroup].splice(newIndex, 0, removed)
+      } else {
+        state[newGroup] = [removed]
+      }
     },
   },
 });
 
-export const {
-  addTodo,
-  changeTodo,
-  deleteTodo,
-  changeGroupOfTodo,
-  changeIndexOfTodo,
-} = todoSlice.actions;
+export const { addTodo, changeTodo, deleteTodo, moveTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
