@@ -58,10 +58,6 @@ const todoSlice = createSlice({
         return todo;
       });
     },
-    setTodosInStore(state, action) {
-      const { todos } = action.payload;
-      return todos;
-    },
   },
 });
 
@@ -69,7 +65,6 @@ export const {
   addTodo,
   changeTodo,
   deleteTodo,
-  setTodosInStore,
   changeGroupOfTodo,
   changeIndexOfTodo,
 } = todoSlice.actions;
