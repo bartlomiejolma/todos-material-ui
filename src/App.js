@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
+import useLocalStorageTodos from "./useLocalStorageTodos";
+
 
 const customTheme = createMuiTheme({
   palette: {
@@ -19,6 +21,7 @@ const customTheme = createMuiTheme({
 });
 
 function App() {
+  useLocalStorageTodos();
   return (
     <StylesProvider injectFirst>
       <MuiThemeProvider theme={customTheme}>
