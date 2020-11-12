@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import { moveTodo } from "../../store/todos";
 import Column from "./Column";
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import styled from "styled-components";
 import { createSelector } from "@reduxjs/toolkit";
 
 const GridContainer = styled(Grid)`
-  padding: 10px;
+  padding: 1%;
 `;
 
 const getTodos = (state) => state.todos;
@@ -32,13 +32,15 @@ const Kanban = () => {
     dispatch(moveTodo({ oldGroup, oldIndex, newGroup, newIndex }));
   };
   return (
-    <GridContainer container spacing={4}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        {groupedTodos.map(([group, tasks]) => (
-          <Column column={{ title: group, id: group }} tasks={tasks} />
-        ))}
-      </DragDropContext>
-    </GridContainer>
+    <Container maxWidth="xl">
+      <GridContainer container spacing={2}>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {groupedTodos.map(([group, tasks]) => (
+            <Column column={{ title: group, id: group }} tasks={tasks} />
+          ))}
+        </DragDropContext>
+      </GridContainer>
+    </Container>
   );
 };
 
